@@ -1,5 +1,6 @@
-package helpers;
+package api;
 
+import helpers.LoadProperties;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
@@ -28,17 +29,12 @@ public class Helpers {
             Request request = new Request.Builder()
                     .url(url)
                     .get()
-                    .addHeader("Authorization", AccessData.getToken)
                     .build();
 
             Request signedRequest = null;
             try {
                 signedRequest = (Request) consumer.sign(request).unwrap();
-            } catch (OAuthMessageSignerException e) {
-                e.printStackTrace();
-            } catch (OAuthExpectationFailedException e) {
-                e.printStackTrace();
-            } catch (OAuthCommunicationException e) {
+            } catch (OAuthExpectationFailedException | OAuthCommunicationException | OAuthMessageSignerException e) {
                 e.printStackTrace();
             }
 
@@ -61,11 +57,7 @@ public class Helpers {
             Request signedRequest = null;
             try {
                 signedRequest = (Request) consumer.sign(request).unwrap();
-            } catch (OAuthMessageSignerException e) {
-                e.printStackTrace();
-            } catch (OAuthExpectationFailedException e) {
-                e.printStackTrace();
-            } catch (OAuthCommunicationException e) {
+            } catch (OAuthExpectationFailedException | OAuthCommunicationException | OAuthMessageSignerException e) {
                 e.printStackTrace();
             }
 

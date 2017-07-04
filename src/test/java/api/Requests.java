@@ -1,20 +1,16 @@
-package helpers.requests;
+package api;
 
 import okhttp3.Response;
 import org.apache.commons.httpclient.util.URIUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import helpers.AccessData;
-import helpers.Helpers;
 import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Requests extends Helpers implements AccessData {
-    public String id_str;
-    public String created_at;
-    public String text;
 
     public static JSONObject getHomeStatuses(int index) throws IOException {
         System.out.println(">>> Getting HOME statuses");
@@ -35,7 +31,7 @@ public class Requests extends Helpers implements AccessData {
 
             return result;
         } else {
-        failTest(responseBody, response.code(), response.message());
+            failTest(responseBody, response.code(), response.message());
             return new JSONObject(responseBody + "\n" + response.code() + "\n" + response.message());
         }
     }

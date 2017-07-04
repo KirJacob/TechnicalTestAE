@@ -1,8 +1,7 @@
 package tests.api;
 
-public class BaseApiTest {
+import helpers.Common;
 
-
-
+public class BaseApiTest extends Common{
 
 }

@@ -1,18 +1,14 @@
 package tests.webui;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import helpers.AccessData;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import helpers.Common;
 
 import java.net.MalformedURLException;
 
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class BaseUiTest implements AccessData {
+public class BaseUiTest extends Common implements AccessData{
 
     private static void printEnvInfo() {
         String f = "%-25s %s\n";

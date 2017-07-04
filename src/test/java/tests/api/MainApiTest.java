@@ -6,14 +6,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static helpers.requests.Requests.*;
+import static api.Requests.*;
 
 public class MainApiTest extends BaseApiTest {
 
     @Test(priority = 1, enabled = true)
-    public void getStatusesTest() throws IOException{
+    public void getStatuses_apiTest() throws IOException{
         JSONObject result = getHomeStatuses(0);
 
         Assert.assertTrue(result.has("retweet_count"));
@@ -22,7 +21,7 @@ public class MainApiTest extends BaseApiTest {
     }
 
     @Test(priority = 2, enabled = true)
-    public void removeStatusTest() throws IOException {
+    public void removeStatus_apiTest() throws IOException {
         //create status for removal and get its id
         String textFor = "this status will be removed 5";
         JSONObject statusForRemove = updateStatus(textFor);
@@ -37,7 +36,7 @@ public class MainApiTest extends BaseApiTest {
     }
 
     @Test(priority = 3, enabled = true)
-    public void updateStatusTest() throws IOException {
+    public void updateStatus_apiTest() throws IOException {
         String textFor = "Mars should be colonized till 2040";
         JSONObject result = updateStatus(textFor);
 
@@ -46,7 +45,7 @@ public class MainApiTest extends BaseApiTest {
     }
 
     @Test(priority = 4, enabled = true)
-    public void statusDuplicationMessageTest() throws IOException {
+    public void statusDuplicationMessage_apiTest() throws IOException {
         //create status for duplication
         String textFor = "Mars should be colonized till 2080";
         updateStatus(textFor);
@@ -56,13 +55,7 @@ public class MainApiTest extends BaseApiTest {
     }
 
     @AfterClass(enabled = true)
-    public void cleanAllStatuses() throws IOException {
-        System.out.println("Cleaning statuses after all tests");
-        ArrayList idList = getUserStatusesCollection();
-        String tempId = null;
-        for (Object obj : idList){
-            tempId = obj.toString();
-            removeStatus(tempId);
-        }
+    public void clean() throws IOException {
+        cleanAllStatuses();
     }
 }
